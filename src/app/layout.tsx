@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     title: "EPIC Voter Lookup — Karnataka Electoral",
     description:
       "Search BBMP electoral records by EPIC ID. Instant voter details lookup.",
-    url: "https://your-domain.com", // ← replace with your actual URL
+    url: "voters-data.vercel.app", // ← replace with your actual URL
     siteName: "EPIC Voter Lookup",
     images: [
       {
-        url: "https://your-domain.com/og-image.png", // ← replace with your actual URL
+        url: "public/icons/icon-512x512.png", // ← replace with your actual URL
         width: 1200,
         height: 630,
         alt: "EPIC Voter Lookup — Karnataka Electoral",
