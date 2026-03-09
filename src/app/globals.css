@@ -1,0 +1,279 @@
+/* src/app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0e14;
+  --surface: #111720;
+  --surface2: #1a2332;
+  --border: #1e2d42;
+  --border-bright: #2a4060;
+  --accent: #00d4ff;
+  --accent2: #0099cc;
+  --accent-glow: rgba(0, 212, 255, 0.15);
+  --success: #00e676;
+  --success-glow: rgba(0, 230, 118, 0.12);
+  --error: #ff5252;
+  --warn: #ffc400;
+  --text: #c8d8e8;
+  --text-dim: #5a7a99;
+  --text-bright: #e8f4ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 255, 0.012) 2px,
+    rgba(0, 212, 255, 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: border-color 0.2s;
+}
+.card:hover {
+  border-color: var(--border-bright);
+}
+
+/* Input */
+.epic-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-bright);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  padding: 14px 18px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.epic-input::placeholder {
+  color: var(--text-dim);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.epic-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow), inset 0 0 20px rgba(0, 212, 255, 0.03);
+}
+
+/* Button */
+.btn-primary {
+  background: var(--accent);
+  color: #000;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.btn-primary:hover:not(:disabled) {
+  background: #33ddff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-success {
+  background: var(--success);
+  color: #000;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.2s, transform 0.1s;
+}
+.btn-success:hover:not(:disabled) {
+  background: #33ff99;
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+  transform: translateY(-1px);
+}
+.btn-success:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 12px 20px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover {
+  border-color: var(--border-bright);
+  color: var(--text);
+}
+
+/* Field row */
+.field-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.field-row:last-child {
+  border-bottom: none;
+}
+.field-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.field-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--accent);
+  word-break: break-word;
+}
+
+/* Pulse animation */
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* Loader */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loader {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+/* Slide-in */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide-in {
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Status badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+.badge-success {
+  background: var(--success-glow);
+  color: var(--success);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+}
+.badge-error {
+  background: rgba(255, 82, 82, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+/* Corner decoration */
+.corner-tl::before,
+.corner-tl::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+}
+.corner-tl::before {
+  top: 0; left: 0;
+  width: 20px; height: 1px;
+}
+.corner-tl::after {
+  top: 0; left: 0;
+  width: 1px; height: 20px;
+}
